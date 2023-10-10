@@ -10,18 +10,42 @@ define([
 ], function ($) {
     'use strict';
     //console.log("Test block");
-    $.validator.addMethod(
+   
+  $.validator.addMethod(
         'rating-required', function (value) {
             return value !== undefined;
         }, $.mage.__('Please select one of each of the ratings above.'));
-    /*$.validator.addMethod(
-      'name-required', function(val, element){
-         console.log('error handling');
-      },$.mage.__('Please select nickname_field.')
-    );*/
-  $.validator.addMethod(
+   $.validator.addMethod(
       'name-required',function(val){
-       return val.match(/^[a-zA-Z0-9-_@.]+$/);
-     },$.mage.__("Invalid please check name on alphabet")
+       return val;
+   },$.mage.__("Please fill nickname field.")
+ );
+    $.validator.addMethod(
+      'validate-name-rule', function(value){
+        var regex = /^[a-zA-Z ]{2,30}$/;
+        return value.match(regex);
+      },$.mage.__("Please fill a to z alphabet.")
     );
+   $.validator.addMethod(
+    'summary-required',function(val){
+        return val;
+    },$.mage.__("Please fill summary field.")
+   );
+   $.validator.addMethod(
+    'validate-summary-rule', function(value){
+      var regex = /^[a-zA-Z ]{2,30}$/;
+      return value.match(regex);
+    },$.mage.__("Please fill summary A to Z.")
+   );
+   $.validator.addMethod(
+     'review-required', function(val){
+        return val;
+     },$.mage.__("Please fill review field")
+   );
+   $.validator.addMethod(
+    'validate-review-rule',function(value){
+     var regex = /^[a-zA-Z ]{2,30}$/;
+     return value.match(regex);
+    },$.mage.__("Please fill review A to Z")
+   );
 });
